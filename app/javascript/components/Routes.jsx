@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import routes from "./constants";
-import Dashboard from "../components/Dashboard";
-import AuthLogin from "../components/Auth/Login";
-import AuthRegister from "../components/Auth/Register";
+import routes from "../utils/routeConstants";
+import Dashboard from "./Dashboard";
+import AuthLogin from "./Auth/Login";
+import AuthRegister from "./Auth/Register";
 
 export default (
   <Router>
