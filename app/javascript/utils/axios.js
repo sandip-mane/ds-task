@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../components/constants/apis";
 
 const HEADERS = {
   xAuthEmail: "X-Auth-Email",
@@ -18,7 +19,7 @@ const setAuthHeaders = () => {
     [HEADERS.xCsrfToken]: getCSRFToken(),
   };
 
-  const token = globalProps.user?.authenticationToken;
+  const token = globalProps.user?.auth_token;
   const email = globalProps.user?.email;
   if (token && email) {
     axios.defaults.headers[HEADERS.xAuthEmail] = email;
@@ -28,7 +29,7 @@ const setAuthHeaders = () => {
 
 
 export default function initializeAxios() {
-  axios.defaults.baseURL = "/";
+  axios.defaults.baseURL = BASE_URL;
 
   setAuthHeaders();
 }

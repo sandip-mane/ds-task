@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import routes from "../../utils/routeConstants";
+import routes from "../constants/routes";
 
 export default () => (
   <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">

@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from "react-router-dom";
 
-import routes from "../../utils/routeConstants";
+import routes from "../constants/routes";
 
 const theme = createTheme();
 

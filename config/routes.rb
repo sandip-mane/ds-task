@@ -5,12 +5,13 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      devise_for :users, controllers: {
-        sessions: "users/sessions",
-        registrations: "users/registrations"
-      }
     end
   end
+
+  devise_for :users, path: "api/v1/users", controllers: {
+    sessions: "api/v1/users/sessions",
+    registrations: "api/v1/users/registrations"
+  }
 
   get "*path", to: "pages#index", constraints: -> (request) do
     request.path.exclude?("/rails") && !request.xhr? && request.format.html?

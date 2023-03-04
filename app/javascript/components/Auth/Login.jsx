@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,24 +8,39 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Snackbar from '@mui/material/Snackbar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from "react-router-dom";
 
-import routes from "../../utils/routeConstants";
+import routes from "../constants/routes";
+import { LOGIN_URL } from "../constants/apis";
+import axios from "axios";
+import { toast } from 'react-toastify';
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    try {
+      const response = await axios
+        .post(LOGIN_URL, {
+          user: {
+            email: data.get("email"),
+            password: data.get("password")
+          }
+        });
+
+      toast.success("Logged in successfully");
+      window.location.pathname = "/";
+    } catch (e) {
+      toast.error(e.response.data.error);
+    }
   };
 
   return (

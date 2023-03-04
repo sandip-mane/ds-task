@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import routes from "../utils/routeConstants";
+import routes from "./constants/routes";
 import Dashboard from "./Dashboard";
 import AuthLogin from "./Auth/Login";
 import AuthRegister from "./Auth/Register";

@@ -1,27 +1,24 @@
 # frozen_string_literal: true
 
-class Api::V1::Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+class Api::V1::Users::SessionsController < Api::V1::BaseController
+  def create
+    user = User.find_for_database_authentication(email: user_params[:email])
+    if valid_password?(user)
+      sign_in user
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+      render_json(user: user)
+    else
+      render_error "Invalid email or password."
+    end
+  end
 
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  private
 
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+    def user_params
+      params.require(:user).permit(:email, :password)
+    end
 
-  # protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+    def valid_password?(user)
+      user.present? && user.valid_password?(user_params[:password])
+    end
 end
