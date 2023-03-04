@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -51,6 +53,9 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Use devise for session management
+gem "devise"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -65,6 +70,11 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # A Ruby static code analyzer, based on the community Ruby style guide
+  gem "rubocop", require: false
+  # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
+  gem "rubocop-rails", require: false
 end
 
 group :test do
