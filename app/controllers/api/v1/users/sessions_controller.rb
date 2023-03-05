@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Users::SessionsController < Api::V1::BaseController
+  skip_before_action :authenticate_user_using_x_auth_token!, only: :create
+
   def create
     user = User.find_for_database_authentication(email: user_params[:email])
     if valid_password?(user)
@@ -10,6 +12,12 @@ class Api::V1::Users::SessionsController < Api::V1::BaseController
     else
       render_error "Invalid email or password."
     end
+  end
+
+  def destroy
+    sign_out current_user
+
+    render_json
   end
 
   private
