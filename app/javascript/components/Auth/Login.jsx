@@ -27,7 +27,7 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
 
     try {
-      const response = await axios
+      await axios
         .post(LOGIN_URL, {
           user: {
             email: data.get("email"),

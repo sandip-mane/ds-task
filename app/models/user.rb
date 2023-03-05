@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   before_save :ensure_authentication_token_is_present
 
+  has_many :referrals, dependent: :destroy
+
   def ensure_authentication_token_is_present
     return if authentication_token.present?
 
