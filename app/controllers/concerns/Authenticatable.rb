@@ -28,5 +28,11 @@ module Authenticatable
       def valid_user_token?(auth_token)
         @user && Devise.secure_compare(@user.authentication_token, auth_token)
       end
+
+      def ensure_not_logged_in!
+        if user_signed_in?
+          render_error "You are already logged in!", :unprocessable_entity
+        end
+      end
   end
 end

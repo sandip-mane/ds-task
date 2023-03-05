@@ -9,7 +9,27 @@ class ActiveSupport::TestCase
   parallelize(workers: :number_of_processors)
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
+  include FactoryBot::Syntax::Methods
+  include ActionMailer::TestHelper
 
   # Add more helper methods to be used by all tests here...
+end
+
+class ActionController::TestCase
+  include Devise::Test::ControllerHelpers
+end
+
+class ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+end
+
+def json_body
+  JSON.parse(response.body)
+end
+
+def auth_headers(user)
+  {
+    "X-Auth-Token" => user.authentication_token,
+    "X-Auth-Email" => user.email
+  }
 end

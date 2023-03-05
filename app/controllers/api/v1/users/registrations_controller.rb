@@ -2,6 +2,7 @@
 
 class Api::V1::Users::RegistrationsController < Api::V1::BaseController
   skip_before_action :authenticate_user_using_x_auth_token!, only: :create
+  before_action :ensure_not_logged_in!, only: :create
 
   def create
     user = User.create!(user_params)

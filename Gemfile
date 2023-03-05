@@ -62,6 +62,13 @@ group :development, :test do
 
   # Pretty print objects
   gem "awesome_print"
+
+  # Use minitest instead of RSpec
+  gem "minitest"
+  # To replace using fixures
+  gem "factory_bot_rails"
+  # To fake data
+  gem "faker"
 end
 
 group :development do

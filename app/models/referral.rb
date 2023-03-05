@@ -8,10 +8,8 @@ class Referral < ApplicationRecord
     accepted: 1
   }
 
-  validate :ensure_that_existing_users_cannot_be_referred!
-  validates :email, uniqueness: {
-    message: "has already been referred"
-  }, on: :create
+  validate :ensure_that_existing_users_cannot_be_referred!, on: :create
+  validates :email, uniqueness: { message: "has already been referred" }, on: :create
 
   after_create_commit :send_email
 
@@ -22,7 +20,7 @@ class Referral < ApplicationRecord
   private
 
     def ensure_that_existing_users_cannot_be_referred!
-      if saved_change_to_email? && email && User.exists?(email: email)
+      if email_changed? && email && User.exists?(email: email)
         errors.add :base, "An user with this email already exists"
       end
     end
