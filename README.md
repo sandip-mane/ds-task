@@ -1,6 +1,6 @@
 # DS Task
 
-[Demo Video](https://app.usebubbles.com/9iBshdQaPNaEagUXU4qVKx/direct-shifts-task-demo) - please watch it at `0.3x` speed.
+[Demo Video](https://app.usebubbles.com/vz4Lkzu7KZAwPb67PrWgNK/direct-shifts-task-demo) - please watch it at `1.3x` speed.
 
 ### Setup
 
