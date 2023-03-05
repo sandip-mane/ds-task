@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 export default (props) => {
   return (
     <>
-      {Routes}
+      <Routes />
 
       <ToastContainer
         position="bottom-left"

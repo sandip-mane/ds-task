@@ -13,7 +13,7 @@ export default () => (
         </p>
         <hr className="my-4" />
         <Link
-          to={routes.LOGIN_PATH}
+          to={routes.auth.login}
           className="btn btn-lg custom-button"
           role="button"
         >

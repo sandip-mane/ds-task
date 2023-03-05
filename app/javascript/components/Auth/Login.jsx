@@ -96,7 +96,7 @@ export default function SignIn() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link component={RouterLink} to={routes.REGISTER_PATH} variant="body2">
+                <Link component={RouterLink} to={routes.auth.register} variant="body2">
                   Don't have an account? Sign Up
                 </Link>
               </Grid>
