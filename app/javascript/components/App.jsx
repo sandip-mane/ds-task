@@ -5,6 +5,8 @@ import { ToastContainer } from 'react-toastify';
 export default (props) => {
   return (
     <>
+      <Routes />
+
       <ToastContainer
         position="bottom-left"
         autoClose={3000}
@@ -17,8 +19,6 @@ export default (props) => {
         pauseOnHover
         theme="colored"
       />
-
-      <Routes />
     </>
   );
 };
