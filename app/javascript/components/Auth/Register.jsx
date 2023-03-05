@@ -15,17 +15,31 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from "react-router-dom";
 
 import routes from "../constants/routes";
+import { REGISTRATION_URL } from "../constants/apis";
+import axios from "axios";
+import { toast } from 'react-toastify';
 
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const payload = {
       email: data.get('email'),
       password: data.get('password'),
-    });
+      first_name: data.get('first_name'),
+      last_name: data.get('last_name'),
+    };
+
+    try {
+      const response = await axios.post(REGISTRATION_URL, { user: payload });
+
+      toast.success("Welcome!");
+      window.location.pathname = "/";
+    } catch (e) {
+      toast.error(e.response.data.error);
+    }
   };
 
   return (
@@ -51,10 +65,10 @@ export default function SignUp() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="first_name"
                   required
                   fullWidth
-                  id="firstName"
+                  id="first_name"
                   label="First Name"
                   autoFocus
                 />
@@ -63,9 +77,9 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
+                  id="last_name"
                   label="Last Name"
-                  name="lastName"
+                  name="last_name"
                   autoComplete="family-name"
                 />
               </Grid>
