@@ -1,24 +1,9 @@
-# README
+# DS Task
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Demo Video](https://app.usebubbles.com/9iBshdQaPNaEagUXU4qVKx/direct-shifts-task-demo) - please watch it at `0.3x` speed.
 
-Things you may want to cover:
+### Setup
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Setup app using `bin/setup`
+- Start dev servers using `bin/dev`
+- Open [http://localhost:3000/](http://localhost:3000/) in the browser
