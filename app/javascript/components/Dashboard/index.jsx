@@ -38,9 +38,9 @@ export default () => {
 
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
+        <Typography component="h1" variant="h5" sx={{ mb: 5 }}>
           Welcome {globalProps.user.first_name}, who do you want to refer today?
-          <Button variant="outlined" onClick={() => setModalOpen(true)} sx={{ ml: 3 }}>
+          <Button variant="outlined" onClick={() => setModalOpen(true)} sx={{ ml: 5 }}>
             Refer someone now!
           </Button>
         </Typography>

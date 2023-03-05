@@ -12,6 +12,17 @@ import dayjs from "dayjs";
 var relativeTime = require('dayjs/plugin/relativeTime');
 dayjs.extend(relativeTime);
 
+const STATES = {
+  sent: {
+    label: "Sent",
+    color: "#ed6c02"
+  },
+  accepted: {
+    label: "Accepted",
+    color: "#2e7d32"
+  }
+}
+
 export default function ReferralTable({ rows }) {
   return (
     <TableContainer component={Paper}>
@@ -33,7 +44,7 @@ export default function ReferralTable({ rows }) {
                 {row.email}
               </TableCell>
               <TableCell align="right">{dayjs(row.created_at).fromNow()}</TableCell>
-              <TableCell align="right">{row.state}</TableCell>
+              <TableCell align="right" sx={{ color: STATES[row.state].color }}>{STATES[row.state].label}</TableCell>
             </TableRow>
           ))}
 

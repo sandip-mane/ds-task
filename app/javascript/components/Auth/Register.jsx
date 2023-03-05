@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
 import routes from "../constants/routes";
 import { REGISTRATION_URL } from "../constants/apis";
@@ -21,7 +21,35 @@ import { toast } from 'react-toastify';
 
 const theme = createTheme();
 
+const INITIAL_VALUES = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  password: ""
+}
+
 export default function SignUp() {
+  const { search } = useLocation();
+  const [formValues, setFormValues] = useState(INITIAL_VALUES);
+
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    const clonedFormValues = { ...formValues };
+    const email = params.get("email");
+    if (email) {
+      clonedFormValues.email = email;
+      setFormValues(clonedFormValues);
+    }
+  }, [search]);
+
+  const handleFieldUpdate = (event) => {
+    const clonedFormValues = { ...formValues };
+    const name = event.target.name;
+    const value = event.target.value;
+    clonedFormValues[name] = value;
+    setFormValues(clonedFormValues);
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -71,6 +99,8 @@ export default function SignUp() {
                   id="first_name"
                   label="First Name"
                   autoFocus
+                  value={formValues.first_name}
+                  onChange={handleFieldUpdate}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -81,6 +111,8 @@ export default function SignUp() {
                   label="Last Name"
                   name="last_name"
                   autoComplete="family-name"
+                  value={formValues.last_name}
+                  onChange={handleFieldUpdate}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -91,6 +123,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={formValues.email}
+                  onChange={handleFieldUpdate}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -102,6 +136,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={formValues.password}
+                  onChange={handleFieldUpdate}
                 />
               </Grid>
             </Grid>
