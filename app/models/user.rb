@@ -18,6 +18,10 @@ class User < ApplicationRecord
     self.authentication_token = generate_authentication_token
   end
 
+  def name
+    [first_name, last_name].join(" ").strip
+  end
+
   private
 
     def generate_authentication_token

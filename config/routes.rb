@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     registrations: "api/v1/users/registrations"
   }
 
+  get "/register", to: "pages#index", as: :register
+
   get "*path", to: "pages#index", constraints: -> (request) do
     request.path.exclude?("/rails") && !request.xhr? && request.format.html?
   end

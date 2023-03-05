@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>A reference was provided by <%= @referral.user.name %></h2>
+    <p>
+      You can join by using the following link:<br>
+    </p>
+    <p>
+      <%= link_to("Join now!", register_url(@referral.link_params)) %>
+    </p>
+    <p>Good day!</p>
+  </body>
+</html>
